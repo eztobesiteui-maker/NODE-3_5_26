@@ -1,4 +1,5 @@
 const express = require ('express');
+const conn = require('./conn');
 const app = express ();
 
 app.use(express.static('public'));
@@ -19,3 +20,16 @@ console.log(age);
 console.log(add);
 })
 app.listen(8000);
+
+const insert = `INSERT INTO tbl_students VALUES('0','${ln}','${fn}','${age}','${add}')`;
+
+// to execute yhe query
+conn.query(insert, (err)=>{
+    if(err) throw err;
+    res.send(
+        `<script>
+        alert('Data Inserted');
+        location,href='/';
+        </script>`
+    )
+})
