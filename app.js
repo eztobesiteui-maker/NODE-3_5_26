@@ -33,3 +33,15 @@ conn.query(insert, (err)=>{
         </script>`
     )
 })
+    app.get('/view',(req,res)=> {
+        const getData = 'SELECT * FROM tbl_student';
+
+        conn.query(getData,(err,data)=>{
+            if (err) throw err;
+            res.render('view',{
+               student: data 
+            })
+        })
+})
+app.listen(8000);
+
